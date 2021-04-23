@@ -19,5 +19,14 @@ public final class daoFactory {
 		}
 		
 	}
+	public static  SellerDao getSellerDao() throws DaoException {
+		switch(IMPL_TYPE) {
+		case"jdbc":		
+			return new JdbcSellerDao();
+			default:
+				throw new DaoException("No suitable implementation available");
+		}
+		
+	}
 	
 }
