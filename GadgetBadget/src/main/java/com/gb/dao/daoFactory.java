@@ -14,10 +14,9 @@ public final class daoFactory {
 			default:
 				throw new DaoException("no suitabale implemtation available");
 				
-				
 			
 		}
 		
 	}
-	
+
 }
