@@ -9,6 +9,7 @@ public interface productDao {
 	//CURD deleted
 	public Product addProduct(Product product) throws DaoException;
 	public Product findById(Integer projID) throws DaoException;
+	public Product updateProduct(Product product) throws DaoException;
 
 	
 	//QUERIES

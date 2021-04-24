@@ -79,8 +79,35 @@ public class jdbcProductDao implements productDao {
 		return p;
 	}
 
-//update and  deleted here
-
+//update
+	@Override
+	public Product updateProduct(Product product) throws DaoException {
+		String sql = "UPDATE product SET  projName=?, description=?, area=?, resID=?, resName=?, price=? WHERE projID=?";
+		try(
+				Connection conn = DbUtil.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+			){
+			
+				stmt.setString(1, product.getProjName());
+				stmt.setString(2, product.getDescription());
+				stmt.setString(3, product.getArea());
+				stmt.setString(4, product.getResID());
+				stmt.setString(5, product.getResName());
+				stmt.setFloat(6, product.getPrice());
+				stmt.setInt(7, product.getProjID());
+				
+				
+				int count = stmt.executeUpdate();
+				if(count==0) {
+					throw new DaoException("No record updated invalid id :"+product.getProjID());
+				}
+			
+		}catch(Exception ex) {
+			throw new DaoException(ex);
+		}
+		return product;
+	}
+//////
 
 	@Override
 	public List<Product> findAll() throws DaoException {

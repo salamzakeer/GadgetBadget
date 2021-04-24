@@ -47,5 +47,16 @@ public class ProductResourse {
 	public Response getOneProducts(@PathParam("id") Integer projID) throws DaoException {
 		return Response.ok(dao.findById(projID)).build();
 	}
-
+	
+	//===============update==========================
+	
+	@Path("/{_id}")
+	@PUT
+	@Produces({"application/json"})
+	@Consumes({"application/json"})
+	public Response updateProduct(@PathParam("_id") Integer projID, Product product) throws DaoException {
+		product.setProjID(projID);
+		product = dao.updateProduct(product);
+		return Response.ok(product).build();
+	}
 }
