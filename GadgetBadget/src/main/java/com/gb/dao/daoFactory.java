@@ -54,6 +54,16 @@ public final class daoFactory {
 			throw new DaoException("No suitable implementation available");
 		}
 	}
+	
+	public static FunderDao getFunderDao() throws DaoException {
+		switch (IMPL_TYPE) {
+		
+		case "jdbc" :
+			return new JdbcFundersDao();
+		default:
+			throw new DaoException("No suitable implementation available");			
+		}
+	}
 
 
 }

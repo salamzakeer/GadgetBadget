@@ -40,7 +40,8 @@ public class BuyersResource {
 		return Response.ok(dao.findById(bId)).build();
 	}
 	
-	//add
+	//add buyers
+	
 	@POST
 	@Produces({"application/json"})
 	@Consumes({"application/json"})
@@ -50,7 +51,7 @@ public class BuyersResource {
 	}
 	
 	
-	//update 
+	//update  buyers
 	
 	@Path("/{buyer_id}")
 	@PUT
@@ -62,7 +63,7 @@ public class BuyersResource {
 		return Response.ok(buyer).build();
 	}
 		
-	///delete
+	///delete buyers
 	
 	@DELETE
 	@Path("/{buyer_id}")

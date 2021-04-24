@@ -48,5 +48,14 @@
 		<url-pattern>/PaymentResource/*</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>Jersey Web Application7</servlet-name>
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<load-on-startup>4</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Jersey Web Application7</servlet-name>
+		<url-pattern>/FundersResource/*</url-pattern>
+	</servlet-mapping>
 
 </web-app>
