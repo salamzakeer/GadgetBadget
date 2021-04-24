@@ -40,5 +40,15 @@ public class SellerResource {
 	public Response getOneSeller(@PathParam("seller_id")Integer id) throws DaoException {
 		return Response.ok(dao.findById(id)).build();
 	}
+	
+	
+	//Add seller
+	@POST
+	@Produces({"application/json"})
+	@Consumes({"application/json"})
+	public Response addNewSeller(Seller seller) throws DaoException {
+		seller = dao.addSeller(seller);
+		return Response.ok(seller).build();
+	}
 }
 	

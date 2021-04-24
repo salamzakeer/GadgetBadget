@@ -16,7 +16,30 @@ public class JdbcSellerDao implements SellerDao {
 	
 	
 	//addSeller
-	
+	@Override
+	public Seller addSeller(Seller seller) throws DaoException {
+		String sql = "insert into researcher_details(firstname, lastname, gender, email, password)values(?, ? , ?, ?, ?)";
+
+		try (Connection conn = DbUtil.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+		) {
+			stmt.setString(1, seller.getFirstname());
+			stmt.setString(2, seller.getLastname());
+			stmt.setString(3, seller.getGender());
+			stmt.setString(4, seller.getEmail());
+			stmt.setString(5, seller.getPassword());
+
+			stmt.executeUpdate();
+			ResultSet keys = stmt.getGeneratedKeys();
+			keys.next();
+			seller.setId(keys.getInt(1));
+
+			return seller;
+		} catch (Exception ex) {
+			throw new DaoException(ex);
+		}
+	}
 
 	//findById
 	@Override
