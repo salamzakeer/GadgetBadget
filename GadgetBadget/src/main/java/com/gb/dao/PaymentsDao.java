@@ -11,6 +11,7 @@ public interface PaymentsDao {
 	
 	public Payment addPayment(Payment payment) throws DaoException;
 	
+	public Payment updatePayment(Payment payment) throws DaoException;
 	// QUERIES
 
 	public List<Payment> findAll() throws DaoException;

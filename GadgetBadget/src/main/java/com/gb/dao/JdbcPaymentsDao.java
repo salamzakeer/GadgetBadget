@@ -96,7 +96,38 @@ public class JdbcPaymentsDao implements PaymentsDao {
 	
 	
 	//updatePayment
-	
+	@Override
+	public Payment updatePayment(Payment payment) throws DaoException {
+		String sql = "update payments set name=?, product_name=?, product_id=?, amount=?, payment_type=?, card_no=? where id=?";
+		
+		try(
+				Connection conn=DbUtil.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				
+				
+			){
+			stmt.setString(1, payment.getName());
+			stmt.setString(2, payment.getProduct_name());
+			stmt.setString(3, payment.getProduct_id());
+			stmt.setString(4, payment.getAmount());
+			stmt.setString(5, payment.getPayment_type());
+			stmt.setString(6, payment.getCard_no());
+			stmt.setInt(7, payment.getId());
+			
+			int count= stmt.executeUpdate();
+			if(count==0) {
+				throw new DaoException("No records updated; invalid id supplied -"+payment.getId());
+			}
+			
+			
+		}
+		catch(Exception ex) {
+			throw new DaoException(ex);
+		}
+		
+		return payment;
+	}
+
 
 	
 	

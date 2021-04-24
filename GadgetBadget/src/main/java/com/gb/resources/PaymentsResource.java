@@ -45,6 +45,15 @@ public class PaymentsResource {
 		return Response.ok(payment).build();
 	}
 	
+	@Path("/{payment_id}")
+	@PUT
+	@Produces({"application/json"})
+	@Consumes({"application/json"})
+	public Response updatePayment(@PathParam("payment_id") Integer id, Payment payment) throws DaoException {
+		payment.setId(id);
+		payment = dao.updatePayment(payment);
+		return Response.ok(payment).build();
+	}
 	
 	
 	
