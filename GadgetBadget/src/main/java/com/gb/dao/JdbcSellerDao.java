@@ -19,7 +19,32 @@ public class JdbcSellerDao implements SellerDao {
 	
 
 	//findById
-	
+	@Override
+	public Seller findById(Integer id) throws DaoException {
+
+		String sql = "select *from researcher_details where id = ?";
+
+		try (Connection conn = DbUtil.getConnection(); 
+				PreparedStatement stmt = conn.prepareStatement(sql);) {
+			
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				Seller s = toSeller(rs);
+				rs.close();
+				return s;
+
+			}
+			
+			rs.close();
+
+		} catch (Exception ex) {
+			throw new DaoException(ex);
+		}
+
+		return null;
+	}
 
 	private Seller toSeller(ResultSet rs) throws SQLException {
 		Seller s = new Seller();

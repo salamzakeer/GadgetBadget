@@ -7,7 +7,7 @@ import com.gb.entitiy.Seller;
 public interface SellerDao {
 
 	// CRUD OPERATION
-	
+	public Seller findById(Integer id) throws DaoException;
 
 	// QUERIES
 

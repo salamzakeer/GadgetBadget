@@ -24,6 +24,8 @@ public class SellerResource {
 		dao = daoFactory.getSellerDao();
 	}
 	
+	
+	//find All
 	@GET
 	@Produces({"application/json"})
 	public Response getAllSeller() throws DaoException {
@@ -31,6 +33,12 @@ public class SellerResource {
 	}
 	
 	
-	
+	//find byID
+	@GET
+	@Path("/{seller_id}")
+	@Produces({"application/json"})
+	public Response getOneSeller(@PathParam("seller_id")Integer id) throws DaoException {
+		return Response.ok(dao.findById(id)).build();
+	}
 }
 	
