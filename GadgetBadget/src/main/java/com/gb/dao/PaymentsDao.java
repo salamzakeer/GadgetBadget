@@ -7,7 +7,7 @@ import com.gb.entitiy.Payment;
 public interface PaymentsDao {
 
 	// CRUD OPERATION
-	
+	public Payment findById(Integer id) throws DaoException;
 	
 	// QUERIES
 

@@ -30,6 +30,15 @@ public class PaymentsResource {
 		return Response.ok(dao.findAll()).build();
 	}
 	
+	@Path("/{payment_id}")
+	@Produces({"application/json", "text/csv"})
+	@GET
+	public Response getOnePayment(@PathParam("payment_id") Integer id) throws DaoException {
+		return Response.ok(dao.findById(id)).build();
+	}
+	
+	
+	
 	
 
 }

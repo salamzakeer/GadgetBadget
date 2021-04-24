@@ -19,8 +19,36 @@ public class JdbcPaymentsDao implements PaymentsDao {
 	//Addpayment
 	
 
+
 	
 	//findById
+	@Override
+	public Payment findById(Integer id) throws DaoException {
+		String sql = "select * from payments where id =?";
+		
+		try(
+				Connection conn=DbUtil.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				
+			){
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				Payment p = toPayment(rs);
+				rs.close();
+				return p;
+				
+			}
+			rs.close();
+			
+			
+		}
+		catch(Exception ex) {
+			throw new DaoException(ex);
+		}
+		return null;
+	}
 	
 
 	private Payment toPayment(ResultSet rs) throws SQLException {
@@ -44,7 +72,8 @@ public class JdbcPaymentsDao implements PaymentsDao {
 	
 	//deletePayment
 	
-
+	
+	//findAll
 	@Override
 	public List<Payment> findAll() throws DaoException {
 		String sql = "select * from payments";
