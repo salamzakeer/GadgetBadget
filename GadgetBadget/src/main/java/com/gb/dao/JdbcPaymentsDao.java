@@ -17,7 +17,37 @@ public class JdbcPaymentsDao implements PaymentsDao {
 	
 	
 	//Addpayment
-	
+	@Override
+	public Payment addPayment(Payment payment) throws DaoException {
+		String sql = "insert into payments(name, product_name, product_id, amount, payment_type, card_no) values(?, ?, ?, ?, ?, ?)";
+		try(
+				Connection conn = DbUtil.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+				
+			){
+				stmt.setString(1, payment.getName());
+				stmt.setString(2, payment.getProduct_name());
+				stmt.setString(3, payment.getProduct_id());
+				stmt.setString(4, payment.getAmount());
+				stmt.setString(5, payment.getPayment_type());
+				stmt.setString(6, payment.getCard_no());
+				
+				stmt.executeUpdate();
+				ResultSet keys = stmt.getGeneratedKeys();
+				keys.next();
+				payment.setId(keys.getInt(1));
+				
+				return payment;
+				
+			
+		}
+		catch(Exception ex) {
+			throw new DaoException(ex);
+		}
+		
+		
+	}
+
 
 
 	

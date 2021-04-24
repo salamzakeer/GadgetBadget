@@ -9,6 +9,8 @@ public interface PaymentsDao {
 	// CRUD OPERATION
 	public Payment findById(Integer id) throws DaoException;
 	
+	public Payment addPayment(Payment payment) throws DaoException;
+	
 	// QUERIES
 
 	public List<Payment> findAll() throws DaoException;

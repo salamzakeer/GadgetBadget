@@ -37,6 +37,15 @@ public class PaymentsResource {
 		return Response.ok(dao.findById(id)).build();
 	}
 	
+	@POST
+	@Produces({"application/json", "text/csv"})
+	@Consumes({"application/json", "text/csv"})
+	public Response addNewPayment(Payment payment) throws DaoException {
+		payment = dao.addPayment(payment);
+		return Response.ok(payment).build();
+	}
+	
+	
 	
 	
 	
