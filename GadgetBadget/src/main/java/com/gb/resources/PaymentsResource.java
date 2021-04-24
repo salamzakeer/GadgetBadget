@@ -55,6 +55,14 @@ public class PaymentsResource {
 		return Response.ok(payment).build();
 	}
 	
+	@DELETE
+	@Path("/{payment_id}")
+	@Produces({"application/json"})
+	public Response deletePayment(@PathParam("payment_id") Integer id) throws DaoException {
+		dao.deletePayment(id);
+		return Response.ok().build();
+	}
+	
 	
 	
 	

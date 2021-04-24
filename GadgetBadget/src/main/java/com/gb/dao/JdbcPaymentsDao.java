@@ -133,6 +133,29 @@ public class JdbcPaymentsDao implements PaymentsDao {
 	
 	//deletePayment
 	
+	@Override
+	public void deletePayment(Integer id) throws DaoException {
+		String sql = "delete from payments where id =?";
+		
+		try(
+				Connection conn=DbUtil.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				
+			){
+			stmt.setInt(1, id);
+
+			int count= stmt.executeUpdate();
+			if(count==0) {
+				throw new DaoException("No records deleted; invalid id supplied -"+ id);
+			
+			}
+		}
+		catch(Exception ex) {
+			throw new DaoException(ex);
+		}
+
+	}
+	
 	
 	//findAll
 	@Override
