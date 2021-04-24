@@ -13,6 +13,7 @@ public interface SellerDao {
 	
 	public Seller updateSeller(Seller seller) throws DaoException;
 
+	public void deleteSeller(Integer id) throws DaoException;
 	// QUERIES
 
 	public List<Seller> findAll() throws DaoException;

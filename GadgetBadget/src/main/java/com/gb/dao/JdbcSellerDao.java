@@ -109,8 +109,30 @@ public class JdbcSellerDao implements SellerDao {
 		return seller;
 	}
 	
+	
+	
 	//deleteSeller
 
+	@Override
+	public void deleteSeller(Integer id) throws DaoException {
+
+		String sql = "delete from researcher_details where id = ?";
+
+		try (Connection conn = DbUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql);
+
+		) {
+
+			stmt.setInt(1, id);
+
+			int count = stmt.executeUpdate();
+			if (count == 0) {
+				throw new DaoException("No records deleted; invalid id supplied - " + id);
+			}
+
+		} catch (Exception ex) {
+			throw new DaoException(ex);
+		}
+	}
 	
 
 	@Override

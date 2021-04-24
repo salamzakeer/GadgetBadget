@@ -42,7 +42,7 @@ public class SellerResource {
 	}
 	
 	
-	//Add seller
+	//Add Seller
 	@POST
 	@Produces({"application/json"})
 	@Consumes({"application/json"})
@@ -52,7 +52,7 @@ public class SellerResource {
 	}
 	
 	
-	//Update seller
+	//Update Seller
 	@PUT
 	@Path("/{seller_id}")
 	@Produces({"application/json"})
@@ -61,6 +61,18 @@ public class SellerResource {
 		seller.setId(id);
 		seller = dao.updateSeller(seller);
 		return Response.ok(seller).build();
+	}
+	
+	
+	
+	//Delete Seller
+	@DELETE
+	@Path("/{seller_id}")
+	@Produces({"application/json"})
+	public Response deleteSeller(@PathParam("seller_id")Integer id) throws DaoException {
+		dao.deleteSeller(id);
+		return Response.ok().build();
+		
 	}
 }
 	
