@@ -10,10 +10,11 @@ public interface productDao {
 	public Product addProduct(Product product) throws DaoException;
 	public Product findById(Integer projID) throws DaoException;
 	public Product updateProduct(Product product) throws DaoException;
+	public Product deleteProduct(Integer projID) throws DaoException;
 
 	
 	//QUERIES
 	public List<Product> findAll() throws DaoException;
-	//here also deleted
+	//
 	
 }

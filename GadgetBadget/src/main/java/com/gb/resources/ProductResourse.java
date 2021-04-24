@@ -59,4 +59,14 @@ public class ProductResourse {
 		product = dao.updateProduct(product);
 		return Response.ok(product).build();
 	}
+	
+	//=============delete================
+	@DELETE
+	@Path("/{contact_id}")
+	@Produces({"application/json"})
+	public Response deleteProduct(@PathParam("contact_id") Integer projID) throws DaoException {
+		dao.deleteProduct(projID);
+		return Response.ok().build();
+	}
+	
 }

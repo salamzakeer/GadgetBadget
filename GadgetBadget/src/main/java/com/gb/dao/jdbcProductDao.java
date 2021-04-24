@@ -108,7 +108,7 @@ public class jdbcProductDao implements productDao {
 		return product;
 	}
 //////
-
+//////////view all
 	@Override
 	public List<Product> findAll() throws DaoException {
 		String sql = "SELECT * FROM product";
@@ -128,6 +128,27 @@ public class jdbcProductDao implements productDao {
 		
 		return list;
 	}
-}//methana semi call akk add kara
+	
+	//delete
+	@Override
+	public Product deleteProduct(Integer projID) throws DaoException {
+		String sql = "DELETE FROM product  WHERE projID=?";
+		try(
+				Connection conn = DbUtil.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				){
+			
+			stmt.setInt(1, projID);
+			
+			int count = stmt.executeUpdate();
+			if(count==0) {
+				throw new DaoException("No record updated invalid id :"+projID);
+			}
+			
+		}catch(Exception ex) {
+			throw new DaoException(ex);
+		}
+		return null;
+	}
 
-	// find by name and id deleted here
+}
