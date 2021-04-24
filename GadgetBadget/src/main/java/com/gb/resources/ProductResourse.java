@@ -39,5 +39,13 @@ public class ProductResourse {
 		product = dao.addProduct(product);
 		return Response.ok(product).build();
 	}
+	
+	//=============findByID-Profile====================================
+	@Path("/{id}") 
+	@Produces({"application/json"})
+	@GET
+	public Response getOneProducts(@PathParam("id") Integer projID) throws DaoException {
+		return Response.ok(dao.findById(projID)).build();
+	}
 
 }

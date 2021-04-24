@@ -38,7 +38,34 @@ public class jdbcProductDao implements productDao {
 	}
 	
 
-//find by id deleted here
+//find by id 
+	@Override
+	public Product findById(Integer projID) throws DaoException {
+		String sql = "SELECT * FROM product WHERE projID=?";
+		try(
+				Connection conn = DbUtil.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				){
+			stmt.setInt(1, projID);
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				Product p = toProduct(rs);
+				
+				rs.close();
+				
+				return p;
+				
+			}
+			rs.close();
+			
+		}catch(Exception ex) {
+			throw new DaoException(ex);
+		}
+		return null;
+	}
+	
+	/////
 
 	private Product toProduct(ResultSet rs) throws SQLException {
 		Product p = new Product();
