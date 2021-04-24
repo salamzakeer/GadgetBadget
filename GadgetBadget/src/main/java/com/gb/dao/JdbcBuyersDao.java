@@ -59,6 +59,32 @@ public class JdbcBuyersDao implements BuyersDao {
 	}
 
 	//updatebuyer
+	
+	@Override
+	public Buyer updateBuyer(Buyer buyer) throws DaoException {
+		String sql = "update buyers set fname=?, lname =?, pnumber=? ,email=?, password = ? where bId=?";
+		try(
+				Connection conn = DbUtil.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+		){
+			
+			stmt.setString(1, buyer.getFname());
+			stmt.setString(2, buyer.getLname());
+			stmt.setString(3, buyer.getPnumber());
+			stmt.setString(4, buyer.getEmail());
+			stmt.setString(5, buyer.getPassword());
+			stmt.setInt(6, buyer.getbId());
+			
+			int count = stmt.executeUpdate();
+			if(count ==0) {
+				throw new DaoException("No records updated ! invalid buyer id is supplied - " + buyer.getbId());
+			}
+		}
+		catch (Exception ex) {
+			throw new DaoException(ex);
+		}
+	return buyer;
+	}
 
 	//deletebuyer
 
