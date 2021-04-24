@@ -9,7 +9,9 @@ public interface BuyersDao {
 	// Crud operation
 	public Buyer addBuyer(Buyer buyer) throws DaoException;
 	
-	public Buyer updateBuyer(Buyer buyer) throws DaoException;
+	public Buyer findById(Integer bId) throws DaoException;
+	
+//	public Buyer updateBuyer(Buyer buyer) throws DaoException;
 
 	// QUERIES
 

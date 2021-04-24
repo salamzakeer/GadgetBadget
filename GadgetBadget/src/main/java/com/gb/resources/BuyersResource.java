@@ -30,6 +30,16 @@ public class BuyersResource {
 	return Response.ok(dao.findAll()).build();
 	}
 	
+	//getOneBuyer
+	
+	@Path("/{buyer_id}")
+	@Produces({"application/json"})
+	@GET
+	public Response getOneBuyer(@PathParam("buyer_id") Integer bId) throws DaoException {
+		
+		return Response.ok(dao.findById(bId)).build();
+	}
+	
 	//add
 	@POST
 	@Produces({"application/json"})
@@ -42,15 +52,15 @@ public class BuyersResource {
 	
 	//update 
 	
-	@Path("/{buyer_id}")
-	@PUT
-	@Produces({"application/json"})
-	@Consumes({"application/json"})
-	public Response updateBuyer(@PathParam("buyer_id")Integer bId, Buyer buyer) throws DaoException {
-		buyer.setbId(bId);
-		buyer = dao.updateBuyer(buyer);
-		return Response.ok(buyer).build();
-	}
+//	@Path("/{buyer_id}")
+//	@PUT
+//	@Produces({"application/json"})
+//	@Consumes({"application/json"})
+//	public Response updateBuyer(@PathParam("buyer_id")Integer bId, Buyer buyer) throws DaoException {
+//		buyer.setbId(bId);
+//		buyer = dao.updateBuyer(buyer);
+//		return Response.ok(buyer).build();
+//	}
 		
 	///delete
 	
