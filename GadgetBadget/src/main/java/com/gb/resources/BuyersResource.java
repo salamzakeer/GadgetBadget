@@ -52,15 +52,15 @@ public class BuyersResource {
 	
 	//update 
 	
-//	@Path("/{buyer_id}")
-//	@PUT
-//	@Produces({"application/json"})
-//	@Consumes({"application/json"})
-//	public Response updateBuyer(@PathParam("buyer_id")Integer bId, Buyer buyer) throws DaoException {
-//		buyer.setbId(bId);
-//		buyer = dao.updateBuyer(buyer);
-//		return Response.ok(buyer).build();
-//	}
+	@Path("/{buyer_id}")
+	@PUT
+	@Produces({"application/json"})
+	@Consumes({"application/json"})
+	public Response updateBuyer(@PathParam("buyer_id")Integer bId, Buyer buyer) throws DaoException {
+		buyer.setbId(bId);
+		buyer = dao.updateBuyer(buyer);
+		return Response.ok(buyer).build();
+	}
 		
 	///delete
 	
