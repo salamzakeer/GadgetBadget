@@ -16,7 +16,7 @@ public class JdbcPaymentsDao implements PaymentsDao {
 
 	
 	
-	//Addpayment
+	//AddPayment
 	@Override
 	public Payment addPayment(Payment payment) throws DaoException {
 		String sql = "insert into payments(name, product_name, product_id, amount, payment_type, card_no) values(?, ?, ?, ?, ?, ?)";
@@ -184,12 +184,6 @@ public class JdbcPaymentsDao implements PaymentsDao {
 	}
 
 	
-	//findByProduct_id
-	
-
-	
-	
-	//findByAmount
 	
 
 }
