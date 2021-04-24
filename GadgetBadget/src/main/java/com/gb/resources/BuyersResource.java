@@ -30,6 +30,15 @@ public class BuyersResource {
 	return Response.ok(dao.findAll()).build();
 	}
 	
-	///delate
+	//add
+	@POST
+	@Produces({"application/json"})
+	@Consumes({"application/json"})
+	public Response addNewBuyer(Buyer buyer) throws DaoException {
+		buyer = dao.addBuyer(buyer);
+		return Response.ok(buyer).build();
+	}
+	
+	///delete
 	
 	}
