@@ -64,4 +64,13 @@ public class BuyersResource {
 		
 	///delete
 	
+	@DELETE
+	@Path("/{buyer_id}")
+	@Produces({"application/json"})
+	public Response deleteBuyer(@PathParam("buyer_id")Integer bId) throws DaoException {
+		dao.deleteBuyer(bId);
+		return Response.ok().build();
+		
+	}
+	
 	}

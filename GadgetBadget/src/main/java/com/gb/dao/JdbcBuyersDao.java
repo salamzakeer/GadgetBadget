@@ -120,6 +120,27 @@ public class JdbcBuyersDao implements BuyersDao {
 	}
 
 	//deletebuyer
+	@Override
+	public void deleteBuyer(Integer bId) throws DaoException {
+		String sql = "delete from buyers where bId=?";
+		
+		try(
+				Connection conn = DbUtil.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);	
+		){
+			stmt.setInt(1, bId);
+			int count = stmt.executeUpdate();
+			if(count ==0) {
+				throw new DaoException("No records deleted ! invalid buyer id is supplied - " + bId);
+			}
+		}
+		catch(Exception ex) {
+			
+			throw new DaoException(ex);
+		}
+		
+
+	}
 
 	@Override
 	public List<Buyer> findAll() throws DaoException {
