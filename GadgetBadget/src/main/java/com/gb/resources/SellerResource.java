@@ -50,5 +50,17 @@ public class SellerResource {
 		seller = dao.addSeller(seller);
 		return Response.ok(seller).build();
 	}
+	
+	
+	//Update seller
+	@PUT
+	@Path("/{seller_id}")
+	@Produces({"application/json"})
+	@Consumes({"application/json"})
+	public Response updateSeller(@PathParam("seller_id")Integer id, Seller seller) throws DaoException {
+		seller.setId(id);
+		seller = dao.updateSeller(seller);
+		return Response.ok(seller).build();
+	}
 }
 	

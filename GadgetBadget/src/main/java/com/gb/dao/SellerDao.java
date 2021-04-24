@@ -10,6 +10,9 @@ public interface SellerDao {
 	public Seller findById(Integer id) throws DaoException;
 
 	public Seller addSeller(Seller seller) throws DaoException;
+	
+	public Seller updateSeller(Seller seller) throws DaoException;
+
 	// QUERIES
 
 	public List<Seller> findAll() throws DaoException;

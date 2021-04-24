@@ -82,7 +82,32 @@ public class JdbcSellerDao implements SellerDao {
 
 	
 	//updateSeller
-	
+	@Override
+	public Seller updateSeller(Seller seller) throws DaoException {
+		String sql = "update researcher_details set firstname=?, lastname=?, gender=?, email=?, password=? where id=?";
+
+		try (Connection conn = DbUtil.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+
+		) {
+			stmt.setString(1, seller.getFirstname());
+			stmt.setString(2, seller.getLastname());
+			stmt.setString(3, seller.getGender());
+			stmt.setString(4, seller.getEmail());
+			stmt.setString(5, seller.getPassword());
+			stmt.setInt(6, seller.getId());
+
+			int count = stmt.executeUpdate();
+			if (count == 0) {
+				throw new DaoException("No records updated; invalid id supplied - " + seller.getId());
+			}
+
+		} catch (Exception ex) {
+			throw new DaoException(ex);
+		}
+
+		return seller;
+	}
 	
 	//deleteSeller
 
