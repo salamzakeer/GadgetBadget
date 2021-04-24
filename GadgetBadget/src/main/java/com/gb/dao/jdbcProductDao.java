@@ -12,7 +12,30 @@ import com.gb.utils.DbUtil;
 
 public class jdbcProductDao implements productDao {
 
-	//insert deleted here
+	//=====================insert==============
+	@Override
+	public Product addProduct(Product product) throws DaoException {
+		String sql = "INSERT INTO product (projID, projName, description, area, resID, resName, price) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		try(
+				Connection conn = DbUtil.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+			){
+			
+				stmt.setInt(1, product.getProjID());
+				stmt.setString(2, product.getProjName());
+				stmt.setString(3, product.getDescription());
+				stmt.setString(4, product.getArea());
+				stmt.setString(5, product.getResID());
+				stmt.setString(6, product.getResName());
+				stmt.setFloat(7, product.getPrice());
+				
+				stmt.executeUpdate();
+			
+		}catch(Exception ex) {
+			throw new DaoException(ex);
+		}
+		return null;
+	}
 	
 
 //find by id deleted here

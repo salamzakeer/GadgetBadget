@@ -23,13 +23,21 @@ public class ProductResourse {
 	public ProductResourse() throws DaoException {
 		dao = daoFactory.getProductDao();
 	}
-	
+
+	//=======================Retrieve all==============
 	@GET
 	@Produces({"application/json"})
 	public Response getAllProducts() throws DaoException {
 		return Response.ok(dao.findAll()).build();
 	}
 	
-	
+	//=====================insert==========
+	@POST
+	@Produces({"application/json"})
+	@Consumes({"application/json"})
+	public Response addProduct(Product product) throws DaoException {
+		product = dao.addProduct(product);
+		return Response.ok(product).build();
+	}
 
 }
